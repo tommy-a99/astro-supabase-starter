@@ -1,71 +1,42 @@
 ---
-import { getEntry } from "astro:content";
-import Alert from "../components/Alert.astro";
-import Guide from "../components/Guide.astro";
 import Layout from "../components/Layout.astro";
-import TableRow from "../components/TableRow.astro";
 import { supabase } from "../utils/database";
 
 export const prerender = false;
 
-let frameworks;
-let frameworksError;
-
-// Fetch frameworks data from Supabase if connection is set up
+// Fetch postings data from Supabase
+let postings = [];
 if (supabase) {
-  const { data, error } = await supabase
-    .from("frameworks")
-    .select("*")
-    .order("likes", { ascending: false });
-  frameworks = data;
-  frameworksError = error;
-}
+    const { data, error } = await supabase
+        .from("postings")
+        .select("*, users(username)")
+        .order("inserted_at", { ascending: false });
 
-// Get guides
-const connectGuide = await getEntry("guides", "guide-connect-supabase");
-const fetchDataGuide = await getEntry("guides", "guide-fetch-data");
+    if (error) {
+        console.error(error);
+        throw new Error("Failed to fetch postings");
+    }
+    postings = data || [];
+}
 ---
 
-<Layout title="Web Frameworks">
-  {
-    supabase ? (
-      frameworks ? (
-        <>
-          <h1 class="mb-8 text-4xl font-bold">
-            Vote for Your Favorite Web Framework
-          </h1>
-          <table class="w-full text-left">
-            <thead>
-              <tr class="font-mono text-base border-t border-b">
-                <th>Name</th>
-                <th>Logo</th>
-                <th>Likes</th>
-              </tr>
-            </thead>
-            <tbody>
-              {frameworks?.map((framework) => (
-                <TableRow framework={framework} />
-              ))}
-            </tbody>
-          </table>
-        </>
-      ) : (
-        <>
-          {frameworksError && (
-            <Alert
-              title={frameworksError.code}
-              text={frameworksError.message}
-              variant="error"
-            />
-          )}
-          {fetchDataGuide && <Guide guide={fetchDataGuide} />}
-        </>
-      )
-    ) : (
-      <>
-        <Alert title="Finish setting up your new site" text="Before your website is ready, you must complete the steps from the guide below to create, populate, and connect your Supabase database."/>
-        {connectGuide && <Guide guide={connectGuide} />}
-      </>
-    )
-  }
+<Layout title="Postings">
+    <section class="border-b pb-14 border-neutral-600">
+        <header class="pb-2 mb-8 border-b">
+            <h1 class="text-5xl font-bold">Recent Postings</h1>
+        </header>
+
+        {postings.length === 0 ? (
+                <p class="text-xl">No postings available.</p>
+        ) : (
+                <ul>
+                    {postings.map((post) => (
+                            <li key={post.id} class="mb-8 border-b pb-4">
+                                <h2 class="text-2xl font-bold">{post.content}</h2>
+                                <p class="text-sm text-neutral-400">By {post.users?.username} on {new Date(post.inserted_at).toLocaleString()}</p>
+                            </li>
+                    ))}
+                </ul>
+        )}
+    </section>
 </Layout>
