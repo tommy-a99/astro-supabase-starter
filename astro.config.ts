@@ -19,7 +19,5 @@ export default defineConfig({
   },
 
   adapter: netlify(),
-  integrations: [react({
-    experimentalReactChildren: true,
-  })]
+  integrations: [react()]
 });

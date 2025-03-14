@@ -1,6 +1,7 @@
 ---
 import Layout from "../components/Layout.astro";
 import { supabase } from "../utils/database";
+import SignInButton from "../components/auth/SignInButton";
 
 export const prerender = false;
 
@@ -24,6 +25,7 @@ if (supabase) {
     <section class="border-b pb-14 border-neutral-600">
         <header class="pb-2 mb-8 border-b">
             <h1 class="text-5xl font-bold">Recent Postings</h1>
+            <SignInButton client:load />
         </header>
 
         {postings.length === 0 ? (
@@ -31,7 +33,7 @@ if (supabase) {
         ) : (
                 <ul>
                     {postings.map((post) => (
-                            <li key={post.id} class="mb-8 border-b pb-4">
+                            <li class="mb-8 border-b pb-4">
                                 <h2 class="text-2xl font-bold">{post.content}</h2>
                                 <p class="text-sm text-neutral-400">By {post.users?.username} on {new Date(post.inserted_at).toLocaleString()}</p>
                             </li>
