@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/Button.tsx";
-import { Input } from "@/components/ui/Input.tsx";
+import { Textarea } from "@/components/ui/Textarea.tsx";
 import { userStore } from "@/store/auth/userStore.ts";
 import { supabase } from "@/utils/database.ts";
 import { useStore } from "@nanostores/react";
@@ -64,19 +64,24 @@ const PostingInput = () => {
 	};
 
 	return (
-		<form onSubmit={(e) => handleSubmit(e)}>
-			<Input
+		<form
+			onSubmit={(e) => handleSubmit(e)}
+			className="bg-card text-card-foreground rounded-md shadow-sm w-100% p-2 xl:p-4 flex gap-2 items-end"
+		>
+			<Textarea
 				value={content}
 				required
 				name="content"
+				placeholder="Enter content"
 				onChange={(e) => setContent(e.target.value)}
+				className="resize-none"
 			/>
 			{isPending ? (
 				<Button disabled>
 					<Send />
 				</Button>
 			) : (
-				<Button type="submit">
+				<Button type="submit" className="rounded-xl">
 					<Send />
 				</Button>
 			)}

@@ -9,11 +9,17 @@ export interface PostingCardProps {
 }
 
 const PostingCard = (props: PostingCardProps) => {
+	const insertedDate = new Date(props.insertedAt);
+
 	return (
 		<Card>
-			<CardContent>{props.content}</CardContent>
-			<CardFooter className="flex justify-between">
-				{props.user.username} on {props.insertedAt}
+			<CardContent className="whitespace-pre-wrap">{props.content}</CardContent>
+			<CardFooter className="flex gap-2 items-end">
+				<div>{props.user.username}</div>
+				<div className="text-xs opacity-80">
+					on{" "}
+					{`${insertedDate.getFullYear()}-${insertedDate.getMonth()}-${insertedDate.getDate()}`}
+				</div>
 			</CardFooter>
 		</Card>
 	);

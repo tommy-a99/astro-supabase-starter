@@ -134,7 +134,7 @@ const PostingsList = () => {
 	}, []);
 
 	return (
-		<div className="pb-14">
+		<div>
 			<section>
 				<PostingInput />
 			</section>
@@ -145,7 +145,7 @@ const PostingsList = () => {
 			) : postings.length === 0 ? (
 				<p className="text-xl">No postings available.</p>
 			) : (
-				<div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+				<div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mt-4">
 					{postings.map((post) => (
 						<article key={post.id}>
 							<PostingCard {...post} />
