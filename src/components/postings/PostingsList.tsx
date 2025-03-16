@@ -2,9 +2,7 @@ import PostingCard, {
 	type PostingCardProps,
 } from "@/components/postings/PostingCard.tsx";
 import PostingInput from "@/components/postings/PostingInput.tsx";
-import { Button } from "@/components/ui/Button.tsx";
 import { supabase } from "@/utils/database.ts";
-import type { RealtimePostgresDeletePayload } from "@supabase/realtime-js";
 import React, {
 	useCallback,
 	useEffect,
