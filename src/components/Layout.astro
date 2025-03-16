@@ -2,6 +2,7 @@
 import "../../src/styles/globals.css";
 import Footer from "./Footer.astro";
 import Header from "./Header.astro";
+import UserStoreSetter from "./auth/UserStoreSetter.astro";
 
 interface Props {
   title: string;
@@ -21,8 +22,9 @@ const { title } = Astro.props;
         document.documentElement.classList.add('dark');
       }
     </script>
+    <UserStoreSetter />
   </head>
-  <body class="px-4 antialiased bg-neutral-800 sm:px-8 text-white">
+  <body class="px-4 antialiased bg-background sm:px-8 text-foreground">
     <Header />
     <main class="w-full max-w-4xl mx-auto grow">
       <slot />

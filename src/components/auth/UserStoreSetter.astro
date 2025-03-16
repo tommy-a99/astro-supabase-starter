@@ -1,0 +1,22 @@
+<script>
+    import {supabase} from "../../utils/database";
+    import {userStore} from "../../store/auth/userStore";
+
+    userStore.set({
+        user: null,
+        isPending: true,
+    });
+
+    const session = await supabase.auth.getSession();
+    if (session?.data?.session) {
+        userStore.set({
+            user: session.data.session.user,
+            isPending: false,
+        });
+    } else {
+        userStore.set({
+            user: null,
+            isPending: false,
+        });
+    }
+</script>

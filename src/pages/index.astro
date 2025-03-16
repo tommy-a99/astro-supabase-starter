@@ -21,13 +21,8 @@ if (supabase) {
 }
 ---
 
-<Layout title="Postings">
-    <section class="border-b pb-14 border-neutral-600">
-        <header class="pb-2 mb-8 border-b">
-            <h1 class="text-5xl font-bold">Recent Postings</h1>
-            <SignInButton client:load />
-        </header>
-
+<Layout title="tommy-project">
+    <section class="pb-14">
         {postings.length === 0 ? (
                 <p class="text-xl">No postings available.</p>
         ) : (
