@@ -10,15 +10,20 @@ export interface PostingCardProps {
 
 const PostingCard = (props: PostingCardProps) => {
 	const insertedDate = new Date(props.insertedAt);
+	const today = new Date();
 
 	return (
 		<Card>
 			<CardContent className="whitespace-pre-wrap">{props.content}</CardContent>
 			<CardFooter className="flex gap-2 items-end">
-				<div>{props.user.username}</div>
+				<div className="text-sm">{props.user.username}</div>
 				<div className="text-xs opacity-80">
-					on{" "}
-					{`${insertedDate.getFullYear()}-${insertedDate.getMonth()}-${insertedDate.getDate()}`}
+					at{" "}
+					{insertedDate.getFullYear() === today.getFullYear() &&
+					insertedDate.getMonth() === today.getMonth() &&
+					insertedDate.getDate() === today.getDate()
+						? `${insertedDate.getHours().toString().padStart(2, "0")}:${insertedDate.getMinutes().toString().padStart(2, "0")}`
+						: `${insertedDate.getFullYear()}-${insertedDate.getMonth()}-${insertedDate.getDate()}`}
 				</div>
 			</CardFooter>
 		</Card>

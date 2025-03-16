@@ -6,6 +6,7 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from "@/components/ui/Popover.tsx";
+import { userStore } from "@/store/auth/userStore.ts";
 import { supabase } from "@/utils/database.ts";
 import { useState } from "react";
 
@@ -18,7 +19,7 @@ const SignInButton = () => {
 			return;
 		}
 
-		const { error } = await supabase.auth.signInWithPassword({
+		const { data, error } = await supabase.auth.signInWithPassword({
 			email,
 			password,
 		});
@@ -26,6 +27,10 @@ const SignInButton = () => {
 			alert(error.message);
 		} else {
 			alert("Signed in successfully!");
+			userStore.set({
+				user: data.user,
+				isPending: false,
+			});
 		}
 	};
 
@@ -34,13 +39,17 @@ const SignInButton = () => {
 			return;
 		}
 
-		const { error } = await supabase.auth.signUp({ email, password });
+		const { data, error } = await supabase.auth.signUp({ email, password });
 		if (error) {
 			alert(error.message);
 		} else {
 			alert(
 				"Sign up successful! Please check your email to confirm your account.",
 			);
+			userStore.set({
+				user: data.user,
+				isPending: false,
+			});
 		}
 	};
 
