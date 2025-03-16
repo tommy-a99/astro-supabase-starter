@@ -66,9 +66,16 @@ const PostingInput = () => {
                    name="content"
                    onChange={e => setContent(e.target.value)}
             />
-            <Button type='submit'>
-                <Send/>
-            </Button>
+            {
+                isPending ?
+                    <Button disabled>
+                        <Send />
+                    </Button>
+                    :
+                    <Button type='submit'>
+                        <Send/>
+                    </Button>
+            }
 
             {error && (
                 <div className="mb-4 p-2 bg-red-100 text-red-800 rounded">

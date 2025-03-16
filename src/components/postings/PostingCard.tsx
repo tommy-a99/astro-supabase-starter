@@ -1,9 +1,10 @@
 import {Card, CardContent, CardFooter} from "@/components/ui/Card.tsx";
+import type {Database} from "../../../supabase/types.ts";
 
 export interface PostingCardProps {
     id: number;
     content: string;
-    username: string;
+    user: Database['public']['Tables']['users']['Row'];
     insertedAt: string;
 }
 
@@ -15,7 +16,7 @@ const PostingCard = (props: PostingCardProps) => {
                 {props.content}
             </CardContent>
             <CardFooter className="flex justify-between">
-                {props.username} on {props.insertedAt}
+                {props.user.username} on {props.insertedAt}
             </CardFooter>
         </Card>
     );
