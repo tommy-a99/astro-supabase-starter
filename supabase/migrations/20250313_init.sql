@@ -25,6 +25,8 @@ alter table public.users
 alter table public.postings
   enable row level security;
 
+create policy "Allow read access to everyone" on public.users
+  for select using (true);
 create policy "Allow read access to everyone" on public.postings
   for select using (true);
 create policy "Allow insert access for authenticated users" on public.postings

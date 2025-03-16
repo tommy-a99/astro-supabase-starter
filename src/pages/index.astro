@@ -1,39 +1,10 @@
 ---
 import Layout from "../components/Layout.astro";
-import { supabase } from "../utils/database";
-import SignInButton from "../components/auth/SignInButton";
-
-export const prerender = false;
-
-// Fetch postings data from Supabase
-let postings = [];
-if (supabase) {
-    const { data, error } = await supabase
-        .from("postings")
-        .select("*, users(username)")
-        .order("inserted_at", { ascending: false });
-
-    if (error) {
-        console.error(error);
-        throw new Error("Failed to fetch postings");
-    }
-    postings = data || [];
-}
+import PostingsList from "../components/postings/PostingsList.tsx";
 ---
 
 <Layout title="tommy-project">
     <section class="pb-14">
-        {postings.length === 0 ? (
-                <p class="text-xl">No postings available.</p>
-        ) : (
-                <ul>
-                    {postings.map((post) => (
-                            <li class="mb-8 border-b pb-4">
-                                <h2 class="text-2xl font-bold">{post.content}</h2>
-                                <p class="text-sm text-neutral-400">By {post.users?.username} on {new Date(post.inserted_at).toLocaleString()}</p>
-                            </li>
-                    ))}
-                </ul>
-        )}
+        <PostingsList client:only />
     </section>
 </Layout>
