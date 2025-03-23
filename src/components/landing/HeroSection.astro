@@ -1,0 +1,19 @@
+---
+import { useTranslations, getLangFromUrl } from "../../utils/i18n/utils";
+import {getRelativeLocaleUrl} from "astro:i18n";
+
+const t = useTranslations(Astro.url);
+const lang = getLangFromUrl(Astro.url);
+---
+
+<section class="relative h-screen overflow-hidden">
+    <img class="absolute inset-0 w-full h-full object-cover z-[-1]" src="/images/main-image.jpeg" alt="jogging people"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-primary/90 to-primary/20 z-0"></div>
+    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-primary-foreground">
+        <h1 class="text-5xl md:text-6xl font-bold font-poppins">{t('landing.hero.title')}</h1>
+        <p class="text-xl md:text-2xl mt-4 max-w-2xl mx-auto">{t('landing.hero.subtitle')}</p>
+        <div class="mt-8 flex gap-4">
+            <a href={getRelativeLocaleUrl(lang, '/start')} class="bg-primary text-primary-foreground px-6 py-3 rounded-full font-semibold hover:scale-105 transition-transform duration-300">{t('landing.hero.mainButton')}</a>
+        </div>
+    </div>
+</section>

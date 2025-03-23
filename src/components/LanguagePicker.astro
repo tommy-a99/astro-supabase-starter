@@ -1,0 +1,15 @@
+---
+import {isDefaultLang, languages} from '../utils/i18n/utils';
+import {getRelativeLocaleUrl} from "astro:i18n";
+
+const pureUrl = isDefaultLang(Astro.url) ? Astro.url.pathname : Astro.url.pathname.split('/').slice(2).join('/')
+---
+<ul>
+    {Object.entries(languages).map(([lang, label]) => {
+        return (
+                <li>
+                    <a href={getRelativeLocaleUrl(lang, pureUrl)}>{label}</a>
+                </li>
+        )
+    })}
+</ul>

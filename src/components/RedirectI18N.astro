@@ -1,0 +1,42 @@
+<script is:inline>
+    function redirectToI18N() {
+        const supportedLanguages = ['en', 'ko']; // Add supported languages
+        const defaultLanguage = 'en';
+        const lang = navigator.language ?? defaultLanguage;
+
+        const userLang = lang.split('-')[0]; // Extract base language (e.g., 'en' from 'en-US');
+        const redirectLang = supportedLanguages.includes(userLang) ? userLang : defaultLanguage;
+
+        if (redirectLang === defaultLanguage) {
+            return;
+        }
+
+        const currentPath = window.location.pathname;
+
+        // Avoid duplicate redirects
+        if (!currentPath.startsWith(`/${redirectLang}`)) {
+            window.location.replace(`/${redirectLang}${currentPath}`);
+        }
+    }
+
+    function isSameOrigin() {
+        const referrer = document.referrer;
+        const currentOrigin = window.location.origin;
+
+        if (!referrer) {
+            return true;
+        }
+
+        try {
+            const referrerOrigin = new URL(referrer).origin;
+            return referrerOrigin === currentOrigin;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    if (!isSameOrigin() || !window.sessionStorage.getItem('lastVisited')) {
+        window.sessionStorage.setItem('lastVisited', new Date().getTime().toString());
+        redirectToI18N();
+    }
+</script>

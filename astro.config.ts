@@ -18,6 +18,11 @@ export default defineConfig({
 		},
 	},
 
+	i18n: {
+		locales: ["en", "ko"],
+		defaultLocale: "en",
+	},
+
 	adapter: netlify(),
 	integrations: [react()],
 });

@@ -1,18 +1,19 @@
 ---
 import "../../src/styles/globals.css";
-import Footer from "./Footer.astro";
-import Header from "./Header.astro";
+import { getLangFromUrl, isDefaultLang } from "../utils/i18n/utils";
+import RedirectI18N from "./RedirectI18N.astro";
 import UserStoreSetter from "./auth/UserStoreSetter.astro";
 
 interface Props {
 	title: string;
+	useUserStore?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, useUserStore } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={getLangFromUrl(Astro.url)}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,13 +23,10 @@ const { title } = Astro.props;
         document.documentElement.classList.add('dark');
       }
     </script>
-    <UserStoreSetter />
+    {isDefaultLang(Astro.url) && <RedirectI18N />}
+    {useUserStore && <UserStoreSetter />}
   </head>
-  <body class="px-4 antialiased bg-background sm:px-8 text-foreground">
-    <Header />
-    <main class="w-full max-w-4xl mx-auto grow">
-      <slot />
-    </main>
-    <Footer />
+  <body class="antialiased bg-background text-foreground">
+    <slot/>
   </body>
 </html>

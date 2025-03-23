@@ -7,7 +7,12 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": [".astro/*", ".netlify/*", "node_modules/*"]
+		"ignore": [
+			".astro/*",
+			".netlify/*",
+			"node_modules/*",
+			"src/utils/i18n/utils.ts"
+		]
 	},
 	"formatter": {
 		"enabled": true,
