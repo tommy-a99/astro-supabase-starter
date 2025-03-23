@@ -3,6 +3,8 @@ import {getLangFromUrl, useTranslations} from "../../utils/i18n/utils";
 import Layout from "../Layout.astro";
 import HeroSection from "./HeroSection.astro";
 import Footer from "../Footer.astro";
+import WhySection from "./WhySection.astro";
+import CorePillars from "./CorePillars.astro";
 
 const t = useTranslations(Astro.url);
 const lang = getLangFromUrl(Astro.url);
@@ -10,55 +12,14 @@ const lang = getLangFromUrl(Astro.url);
 
 <Layout title={t('landing.title')}>
     <!-- Hero Section -->
-    <HeroSection />
+    <HeroSection/>
 
-    <!-- Why Us Section -->
-    <section class="py-16 text-center bg-gray-100">
-        <h2 class="text-4xl font-bold text-gray-800 font-montserrat">Why healthy life?</h2>
-        <p class="text-lg text-gray-600 mt-4 max-w-xl mx-auto">A healthy life isn’t just about avoiding sickness—it’s about thriving. Small, consistent choices like drinking water, eating whole foods, staying active, and managing stress compound over time, creating a ripple effect of well-being. It’s like investing in yourself: the earlier you start, the bigger the payoff. Plus, it sets a great example for others, like kids or peers, to follow suit.</p>
-        <div class="flex justify-center gap-8 mt-8">
-            <div class="text-2xl text-teal-600 flex flex-col items-center">
-                <span class="material-icons text-4xl drop-shadow-[0_0_10px_teal]">eco</span>
-                Nutrition
-            </div>
-            <div class="text-2xl text-teal-600 flex flex-col items-center">
-                <span class="material-icons text-4xl drop-shadow-[0_0_10px_teal]">fitness_center</span>
-                Fitness
-            </div>
-            <div class="text-2xl text-teal-600 flex flex-col items-center">
-                <span class="material-icons text-4xl drop-shadow-[0_0_10px_teal]">favorite</span>
-                Wellness
-            </div>
-        </div>
-    </section>
+    <!-- Why Section -->
+    <WhySection/>
 
     <!-- Core Pillars Section -->
-    <section class="py-16 bg-white">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
-            <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
-                <img src="/images/diet.webp" alt="Healthy diet" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold text-gray-800">Diet</h3>
-                    <p class="text-gray-600 mt-2">Fuel your body with plans tailored to your goals – keto, plant-based, or balanced bliss.</p>
-                </div>
-            </div>
-            <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
-                <img src="/images/exercise.webp" alt="Exercise" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold text-gray-800">Exercise</h3>
-                    <p class="text-gray-600 mt-2">Move smarter with routines that match your vibe – from HIIT to yoga flows.</p>
-                </div>
-            </div>
-            <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
-                <img src="/images/health.webp" alt="Health tracking" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold text-gray-800">Health</h3>
-                    <p class="text-gray-600 mt-2">Stay in tune with check-ins, tips, and tools for total well-being.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <CorePillars/>
 
     <!-- Footer -->
-    <Footer />
+    <Footer/>
 </Layout>
