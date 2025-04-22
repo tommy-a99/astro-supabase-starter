@@ -7,9 +7,12 @@ import UserStoreSetter from "./auth/UserStoreSetter.astro";
 interface Props {
 	title: string;
 	useUserStore?: boolean;
+	description?: string;
+	keywords?: string;
+	author?: string;
 }
 
-const { title, useUserStore } = Astro.props;
+const { title, useUserStore, description, keywords, author } = Astro.props;
 ---
 
 <!doctype html>
@@ -18,15 +21,21 @@ const { title, useUserStore } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content={author} />
     <script is:inline>
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.classList.add('dark');
+      if (
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      ) {
+        document.documentElement.classList.add("dark");
       }
     </script>
     {isDefaultLang(Astro.url) && <RedirectI18N />}
     {useUserStore && <UserStoreSetter />}
   </head>
   <body class="antialiased bg-background text-foreground">
-    <slot/>
+    <slot />
   </body>
 </html>

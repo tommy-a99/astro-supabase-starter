@@ -1,19 +1,49 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
 import { getLangFromUrl, useTranslations } from "../../utils/i18n/utils";
+import ImageInfoButton from "./ImageInfoButton.tsx";
 
 const t = useTranslations(Astro.url);
-const lang = getLangFromUrl(Astro.url);
 ---
 
-<section class="relative h-screen overflow-hidden">
-    <img class="absolute inset-0 w-full h-full object-cover z-[-1]" src="/images/main-image.jpeg" alt="jogging people"/>
-    <div class="absolute inset-0 bg-gradient-to-b from-primary/90 to-primary/20 z-0"></div>
-    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-primary-foreground">
-        <h1 class="text-5xl md:text-6xl font-bold font-poppins">{t('landing.hero.title')}</h1>
-        <p class="text-xl md:text-2xl mt-4 max-w-2xl mx-auto">{t('landing.hero.subtitle')}</p>
-        <div class="mt-8 flex gap-4">
-            <a href={getRelativeLocaleUrl(lang, '/start')} class="bg-primary text-primary-foreground px-6 py-3 rounded-full font-semibold hover:scale-105 transition-transform duration-300">{t('landing.hero.mainButton')}</a>
-        </div>
-    </div>
+<section
+  class="w-screen h-screen mx-auto px-6 flex items-center justify-center bg-linear-to-b from-blue-200 to-neutral-100"
+>
+  <div class="relative w-11/12 max-w-xl aspect-squre">
+    <!-- Main image -->
+    <img
+      src="/images/happy-family.webp"
+      alt="Main Image"
+      class="w-11/12 max-w-xl object-cover"
+    />
+    <!-- React-based InfoButton components -->
+    <ImageInfoButton
+      id="bubble1"
+      position={{ top: "15%", left: "28%" }}
+      title={t("landing.bubble1.title")}
+      content={t("landing.bubble1.content")}
+      pointerDirection="top"
+      pointerAlign="center"
+      client:load
+    />
+
+    <ImageInfoButton
+      id="bubble2"
+      position={{ top: "12%", right: "28%" }}
+      title={t("landing.bubble2.title")}
+      content={t("landing.bubble2.content")}
+      pointerDirection="top"
+      pointerAlign="end"
+      client:load
+    />
+
+    <ImageInfoButton
+      id="bubble3"
+      position={{ bottom: "30%", left: "40%" }}
+      title={t("landing.bubble3.title")}
+      content={t("landing.bubble3.content")}
+      pointerDirection="bottom"
+      pointerAlign="center"
+      client:load
+    />
+  </div>
 </section>
