@@ -23,7 +23,7 @@ const t = useTranslations(Astro.url);
       content={t("landing.bubble1.content")}
       pointerDirection="top"
       pointerAlign="center"
-      client:load
+      client:only="react"
     />
 
     <ImageInfoButton
@@ -33,7 +33,7 @@ const t = useTranslations(Astro.url);
       content={t("landing.bubble2.content")}
       pointerDirection="top"
       pointerAlign="end"
-      client:load
+      client:only="react"
     />
 
     <ImageInfoButton
@@ -43,7 +43,7 @@ const t = useTranslations(Astro.url);
       content={t("landing.bubble3.content")}
       pointerDirection="bottom"
       pointerAlign="center"
-      client:load
+      client:only="react"
     />
   </div>
 </section>
