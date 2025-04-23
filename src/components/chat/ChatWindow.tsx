@@ -1,74 +1,88 @@
+import { Send } from "lucide-react";
 // src/components/ChatWindow.jsx
-import React, { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from "react";
+import { Button } from "../ui/Button";
 
 function ChatWindow() {
-  const [messages, setMessages] = useState<{text: string, sender: string}[]>([]);
-  const [newMessage, setNewMessage] = useState('');
-  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+	const [messages, setMessages] = useState<
+		{ text: string; sender: string; createdAt: string }[]
+	>([]);
+	const messagesEndRef = useRef<HTMLDivElement | null>(null);
+	const messageInputRef = useRef<HTMLDivElement | null>(null);
+	const isMobile =
+		/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+			navigator.userAgent,
+		);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+	useEffect(() => {
+		if (messages[messages.length - 1]?.sender === "user") {
+			scrollToBottom();
+		}
+	}, [messages]);
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+	const scrollToBottom = () => {
+		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+	};
 
-  const handleSendMessage = () => {
-    if (newMessage.trim()) {
-      setMessages([...messages, { text: newMessage, sender: 'user' }]);
-      setNewMessage('');
-      // 실제 서비스에서는 이 부분에서 서버로 메시지를 전송하는 로직을 구현해야 합니다.
-      console.log('메시지 전송:', newMessage);
-    }
-  };
+	const handleSendMessage = () => {
+		const newMessage = messageInputRef.current?.textContent ?? "";
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewMessage(event.target.value);
-  };
+		if (newMessage.trim() && messageInputRef.current) {
+			setMessages([
+				...messages,
+				{ text: newMessage, sender: "user", createdAt: Date.now().toString() },
+			]);
+			messageInputRef.current.textContent = ""; // Clear the input field
+			scrollToBottom();
 
-  return (
-    <div className="flex flex-col h-screen bg-gray-100">
-      {/* 채팅 메시지 영역 */}
-      <div className="flex-grow p-4 overflow-y-auto">
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`mb-2 p-3 rounded-md ${
-              message.sender === 'user' ? 'bg-blue-500 text-white self-end' : 'bg-gray-300 text-gray-800 self-start'
-            }`}
-          >
-            {message.text}
-          </div>
-        ))}
-        <div ref={messagesEndRef} /> {/* 스크롤 위치를 최하단으로 유지하기 위한 빈 div */}
-      </div>
+			// TODO: Add your message sending logic here
+			console.log("Message send:", newMessage);
+		}
+	};
 
-      {/* 메시지 입력 영역 */}
-      <div className="bg-gray-200 p-4">
-        <div className="flex items-center">
-          <input
-            type="text"
-            className="flex-grow rounded-l-md py-2 px-3 focus:outline-none focus:ring focus:ring-blue-300"
-            placeholder="메시지를 입력하세요..."
-            value={newMessage}
-            onChange={e => handleInputChange}
-            onKeyDown={(event) => {
-              if (event.key === 'Enter') {
-                handleSendMessage();
-              }
-            }}
-          />
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-md focus:outline-none focus:shadow-outline"
-            onClick={handleSendMessage}
-          >
-            전송
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+	return (
+		<div className="flex flex-col h-screen items-center">
+			{/* Chatting messages area */}
+			<div className="flex-grow py-2 overflow-y-auto w-11/12 max-w-240">
+				{messages.map((message) => (
+					<pre
+						key={message.createdAt}
+						className={`mb-2 p-3 rounded-md text-card-foreground bg-card ${
+							message.sender === "user" ? "ml-2 self-end" : "mr-2 self-start"
+						}`}
+					>
+						{message.text}
+					</pre>
+				))}
+				<div ref={messagesEndRef} />{" "}
+				{/* This div is used to scroll to the bottom of the chat window */}
+			</div>
+
+			{/* Input area */}
+			<div className="self-center bg-card p-4 w-11/12 mb-4 max-w-240 rounded-lg">
+				<div className="flex items-end gap-2">
+					<div
+						contentEditable="true"
+						className="flex-grow rounded-md py-2 px-3 focus:outline-none h-18 overflow-y-auto whitespace-pre"
+						data-placeholder="Type your message..."
+						ref={messageInputRef}
+						onKeyDown={(e) => {
+							if (e.key === "Enter" && !e.shiftKey && !isMobile) {
+								e.preventDefault();
+								handleSendMessage();
+							}
+						}}
+					/>
+					<Button
+						className="bg-primary text-primary-foreground font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
+						onClick={handleSendMessage}
+					>
+						<Send />
+					</Button>
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default ChatWindow;
