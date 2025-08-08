@@ -1,74 +1,44 @@
-# Astro Supabase Starter
+# Astro Supabase AI 챗봇 스타터
 
-![Astro Supabase Starter Preview](astro-supabase-starter-preview.png)
+이 프로젝트는 Astro와 Supabase를 사용하여 AI 챗봇 서비스를 빠르게 구축할 수 있도록 도와주는 스타터 템플릿입니다. 사용자는 이 템플릿을 기반으로 자신만의 AI 챗봇 웹 애플리케이션을 손쉽게 개발하고 배포할 수 있습니다.
 
-**View demo:** [https://astro-supabase-starter.netlify.app/](https://astro-supabase-starter.netlify.app/)
+## 주요 기능
 
-The Astro Supabase starter demonstrates how to integrate **Supabase** into an Astro project deployed on Netlify.
+*   **AI 챗봇 기능**: Supabase Edge Function을 활용한 AI 챗봇 기능이 내장되어 있어, 사용자와 자연스러운 대화를 나눌 수 있습니다.
+*   **사용자 인증**: Supabase Auth를 통해 간편하게 소셜 로그인 및 이메일 기반의 회원가입/로그인 기능을 구현할 수 있습니다.
+*   **다국어 지원**: i18n을 통해 한국어와 영어를 지원하며, 다른 언어 추가도 용이합니다.
+*   **반응형 디자인**: Tailwind CSS를 사용하여 모바일, 태블릿, 데스크톱 등 다양한 디바이스에서 최적화된 화면을 제공합니다.
 
-## Deploying to Netlify
+## 기술 스택
 
-If you click "Deploy to Netlify" button, it will create a new repo for you that looks exactly like this one, and sets that repo up immediately for deployment on Netlify.
+*   **프레임워크**: [Astro](https://astro.build/)
+*   **UI 라이브러리**: [React](https://react.dev/)
+*   **백엔드 및 데이터베이스**: [Supabase](https://supabase.com/)
+*   **스타일링**: [Tailwind CSS](https://tailwindcss.com/)
+*   **배포**: [Netlify](https://www.netlify.com/)
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify-templates/astro-supabase-starter&fullConfiguration=true)
+## 시작하기
 
-## Astro Commands
+프로젝트를 로컬 환경에서 실행하고 개발을 시작하려면 아래의 가이드를 따라주세요.
 
-All commands are run from the root of the project, from a terminal:
+### 사전 준비
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+*   [Node.js](https://nodejs.org/) v18.14+
+*   [Netlify 계정](https://netlify.com/)
+*   [Supabase 계정](https://supabase.com/)
 
-## Developing Locally
+### 설치 및 실행
 
-| Prerequisites                                                                |
-| :--------------------------------------------------------------------------- |
-| [Node.js](https://nodejs.org/) v18.14+                                       |
-| (optional) [nvm](https://github.com/nvm-sh/nvm) for Node version management  |
-| [Netlify account](https://netlify.com/)                                      |
-| [Netlify CLI](https://docs.netlify.com/cli/get-started/).                    |
-| [Supabase account](https://supabase.com/)                                    |
+1.  이 저장소를 복제(clone)합니다.
+2.  `npm install` 명령어로 의존성을 설치합니다.
+3.  Supabase 프로젝트를 생성하고, `supabase/migrations` 디렉토리의 SQL을 실행하여 데이터베이스를 설정합니다.
+4.  `.env.example` 파일을 복사하여 `.env` 파일을 만들고, Supabase 프로젝트의 URL과 anon key를 입력합니다.
+5.  `npm run dev` 명령어로 개발 서버를 실행합니다.
 
-### Set up the database
+## 만든이
 
-To use this template, you’ll need to set up and seed a new Supabase database.
+이 프로젝트는 소프트웨어 엔지니어 Jules에 의해 만들어졌습니다. AI 기술을 활용하여 더 나은 사용자 경험을 제공하는 것에 관심이 많습니다.
 
-1. Create a new Supabase project.
-2. Run the SQL commands found in the `supabase/migrations` directory in the Supabase UI.
-3. To seed the database with data, you can import the contents of the `supabase/seed.csv` file in the Supabase UI.
+---
 
-ℹ️ _Note: This template was created to be used with the Supabase extension for Netlify. If you don’t wish to use the Netlify Supabase extension, you will need to set the `SUPABASE_DATABASE_URL` and `SUPABASE_ANON_KEY` environment variables in the `.env` file._
-
-### Install and run locally
-
-1. Clone this repository, then run `npm install` in its root directory.
-
-2. For the starter to have full functionality locally, please ensure you have an up-to-date version of Netlify CLI. Run:
-
-```
-npm install netlify-cli@latest -g
-```
-
-3. Link your local repository to the deployed Netlify site. This will ensure you're using the same runtime version for both local development and your deployed site.
-
-```
-netlify link
-```
-
-4. Then, run the Astro.js development server via Netlify CLI:
-
-```
-netlify dev --target-port 4321
-```
-
-If your browser doesn't navigate to the site automatically, visit [localhost:8888](http://localhost:8888).
-
-## Support
-
-If you get stuck along the way, get help in our [support forums](https://answers.netlify.com/).
+기존의 기술적인 내용은 `USAGE.md` 파일로 옮겨서 필요시 참고할 수 있도록 하였습니다.
