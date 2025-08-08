@@ -1,12 +1,13 @@
 ---
-import { getLangFromUrl, useTranslations } from "../../utils/i18n/utils";
+import { useTranslations } from "../../utils/i18n/utils";
 import Layout from "../Layout.astro";
+import AboutMeSection from "./AboutMeSection.astro";
 import HeroSection from "./HeroSection.astro";
 
 const t = useTranslations(Astro.url);
 ---
 
 <Layout title={t("landing.title")} description={t("landing.description")}>
-  <!-- Hero Section -->
   <HeroSection />
+  <AboutMeSection />
 </Layout>
