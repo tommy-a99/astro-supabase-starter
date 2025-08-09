@@ -1,19 +1,25 @@
 export const en = {
 	landing: {
 		title: "Marlang",
-		description: "Family of Marlang",
+		description: "Introducing Marlang's family",
+		ctaButton: "Chat with Marlang",
 		bubble1: {
 			title: "Taeggu",
-			content: "Thoughtfulness, diet, international travel, APT, luxury",
+			content: "Marlang's pretty and smart mom.",
 		},
 		bubble2: {
-			title: "Baeko",
-			content: "Steadiness, muscle, computer engineering, MMA, career",
+			title: "Baekho",
+			content: "Has a big crush on Taeggu.",
 		},
 		bubble3: {
 			title: "Marlang",
-			content: "Loveliness, churu, tuna, hunting, sleeping",
+			content: "A white Munchkin cat with a soft texture.",
 		},
+	},
+	aboutMe: {
+		title: "About Marlang",
+		name: "Marlang",
+		bio: "A white Munchkin cat with a soft texture. Loves people and enjoys playing together.",
 	},
 	message: {
 		title: "Chat room",

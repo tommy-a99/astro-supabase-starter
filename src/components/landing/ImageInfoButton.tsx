@@ -61,7 +61,12 @@ const ImageInfoButton: React.FC<ImageInfoButtonProps> = ({
 					variant="outline"
 					size="sm"
 					className="absolute w-6 h-6 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-full flex justify-center items-center shadow-md transition-transform duration-300 ease-in-out hover:scale-110 z-10"
-					style={position}
+					style={{
+						...position,
+						animation: "fadeIn 0.5s ease-out forwards",
+						animationDelay: `calc(${id.replace("bubble", "")} * 200ms)`,
+						opacity: 0,
+					}}
 					onClick={handleToggle}
 				>
 					!
