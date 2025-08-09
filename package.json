@@ -8,7 +8,8 @@
 		"build": "astro check && astro build",
 		"preview": "astro preview",
 		"astro": "astro",
-		"biome": "npx @biomejs/biome check --write . "
+		"biome": "npx @biomejs/biome check --write . ",
+		"test": "vitest"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.4",
@@ -34,8 +35,9 @@
 		"typescript": "^5.8.3"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^1.9.4",
+		"@biomejs/biome": "2.0.6",
 		"@tailwindcss/typography": "^0.5.16",
-		"tailwindcss": "^4.1.4"
+		"tailwindcss": "^4.1.4",
+		"vitest": "^3.2.4"
 	}
 }

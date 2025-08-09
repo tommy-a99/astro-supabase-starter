@@ -1,10 +1,4 @@
-import React, {
-	useCallback,
-	useEffect,
-	useRef,
-	useState,
-	useTransition,
-} from "react";
+import { useCallback, useEffect, useRef, useState, useTransition } from "react";
 import PostingCard, {
 	type PostingCardProps,
 } from "@/components/postings/PostingCard.tsx";
@@ -74,7 +68,7 @@ const PostingsList = () => {
 					}
 
 					if (!userMapRef.current.has(payload.new.user_id)) {
-						const { data, error } = await supabase
+						const { data } = await supabase
 							.from("users")
 							.select("*")
 							.eq("id", payload.new.user_id);

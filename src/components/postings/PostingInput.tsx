@@ -38,7 +38,7 @@ const PostingInput = () => {
 
 			try {
 				// Insert the new post into the postings table
-				const { data, error: insertError } = await supabase
+				const { error: insertError } = await supabase
 					.from("postings")
 					.insert([
 						{

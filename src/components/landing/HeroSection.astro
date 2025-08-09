@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import happyFamily from "../../assets/images/happy-family.webp";
 import { useTranslations } from "../../utils/i18n/utils";
 import { Button } from "../ui/Button";
 import ImageInfoButton from "./ImageInfoButton.tsx";
@@ -11,8 +13,8 @@ const t = useTranslations(Astro.url);
 >
   <div class="relative w-11/12 max-w-xl aspect-square">
     <!-- Main image -->
-    <img
-      src="/images/happy-family.webp"
+    <Image
+      src={happyFamily}
       alt="Main Image"
       class="w-full h-full object-cover rounded-lg shadow-2xl"
     />

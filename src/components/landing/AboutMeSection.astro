@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import catsFace from "../../assets/images/cats_face.jpg";
 import { useTranslations } from "../../utils/i18n/utils";
 
 const t = useTranslations(Astro.url);
@@ -15,8 +17,8 @@ const t = useTranslations(Astro.url);
       class="max-w-4xl mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-xl p-8 flex flex-col md:flex-row items-center gap-8"
     >
       <div class="w-40 h-40 md:w-48 md:h-48 flex-shrink-0">
-        <img
-          src="/images/cats_face.jpg"
+        <Image
+          src={catsFace}
           alt="Creator's Photo"
           class="rounded-full w-full h-full object-cover border-4 border-blue-200"
         />
