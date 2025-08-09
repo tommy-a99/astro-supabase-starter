@@ -2,7 +2,7 @@ export const ko = {
 	landing: {
 		title: "Marlang",
 		description: "말랑이의 가족을 소개합니다",
-		ctaButton: "말랑이와 채팅하기",
+		ctaButton: "AI 챗봇과 대화 시작하기",
 		bubble1: {
 			title: "태꾸",
 			content: "이쁘고 똑똑한 말랑이의 엄마",
@@ -23,5 +23,10 @@ export const ko = {
 	},
 	message: {
 		title: "채팅 방",
+	},
+	chat: {
+		welcomeMessage: "안녕하세요! 무엇을 도와드릴까요?",
+		example1: "Astro 프레임워크에 대해 설명해줘",
+		example2: "오늘 날씨 어때?",
 	},
 };
