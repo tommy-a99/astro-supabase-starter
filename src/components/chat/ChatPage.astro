@@ -1,15 +1,15 @@
 ---
-import Layout from "../Layout.astro";
 import { useTranslations } from "../../utils/i18n/utils";
+import Layout from "../Layout.astro";
 import ChatWindow from "./ChatWindow.tsx";
 
 const t = useTranslations(Astro.url);
 
 const translations = {
-  welcomeMessage: t("chat.welcomeMessage"),
-  example1: t("chat.example1"),
-  example2: t("chat.example2"),
-  inputPlaceholder: t("message.title"),
+	welcomeMessage: t("chat.welcomeMessage"),
+	example1: t("chat.example1"),
+	example2: t("chat.example2"),
+	inputPlaceholder: t("message.title"),
 };
 ---
 
