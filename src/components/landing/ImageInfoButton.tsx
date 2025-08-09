@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Button } from "../ui/Button"; // Adjust import based on your setup
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/Popover"; // Adjust import based on your setup
 import CloseIcon from "../ui/icons/CloseIcon";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/Popover"; // Adjust import based on your setup
 
 export interface ImageInfoButtonProps {
 	id: string;

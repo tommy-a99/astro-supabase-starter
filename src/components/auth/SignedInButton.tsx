@@ -1,3 +1,4 @@
+import { useStore } from "@nanostores/react";
 import { Button } from "@/components/ui/Button.tsx";
 import {
 	Popover,
@@ -6,7 +7,6 @@ import {
 } from "@/components/ui/Popover.tsx";
 import { userStore } from "@/store/auth/userStore.ts";
 import { supabase } from "@/utils/database.ts";
-import { useStore } from "@nanostores/react";
 
 const SignedInButton = () => {
 	const $userStore = useStore(userStore);
