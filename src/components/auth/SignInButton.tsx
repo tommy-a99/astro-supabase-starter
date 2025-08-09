@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/Button.tsx";
 import { Input } from "@/components/ui/Input.tsx";
 import { Label } from "@/components/ui/Label.tsx";
@@ -8,7 +9,6 @@ import {
 } from "@/components/ui/Popover.tsx";
 import { userStore } from "@/store/auth/userStore.ts";
 import { supabase } from "@/utils/database.ts";
-import { useState } from "react";
 
 const SignInButton = () => {
 	const [email, setEmail] = useState("");

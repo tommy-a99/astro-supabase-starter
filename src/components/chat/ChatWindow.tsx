@@ -1,5 +1,6 @@
 import { Send } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { getAIResponse } from "@/utils/mockAiResponses";
 import { Button } from "../ui/Button";
 import ExampleQuestions from "./ExampleQuestions";
 
@@ -26,8 +27,8 @@ function ChatWindow({ translations }: ChatWindowProps) {
     typeof window !== "undefined" &&
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
-    );
-
+		);
+	
   useEffect(() => {
     // Add welcome message on initial load
     setMessages([

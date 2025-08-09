@@ -1,8 +1,3 @@
-import PostingCard, {
-	type PostingCardProps,
-} from "@/components/postings/PostingCard.tsx";
-import PostingInput from "@/components/postings/PostingInput.tsx";
-import { supabase } from "@/utils/database.ts";
 import React, {
 	useCallback,
 	useEffect,
@@ -10,6 +5,11 @@ import React, {
 	useState,
 	useTransition,
 } from "react";
+import PostingCard, {
+	type PostingCardProps,
+} from "@/components/postings/PostingCard.tsx";
+import PostingInput from "@/components/postings/PostingInput.tsx";
+import { supabase } from "@/utils/database.ts";
 import type { Database } from "../../../supabase/types.ts";
 
 const PostingsList = () => {

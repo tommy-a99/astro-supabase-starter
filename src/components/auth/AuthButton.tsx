@@ -1,8 +1,8 @@
-import SignInButton from "@/components/auth/SignInButton.tsx";
+import { useStore } from "@nanostores/react";
 import SignedInButton from "@/components/auth/SignedInButton.tsx";
+import SignInButton from "@/components/auth/SignInButton.tsx";
 import { Skeleton } from "@/components/ui/Skeleton.tsx";
 import { userStore } from "@/store/auth/userStore.ts";
-import { useStore } from "@nanostores/react";
 
 const AuthButton = () => {
 	const $userStore = useStore(userStore);

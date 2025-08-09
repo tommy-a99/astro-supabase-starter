@@ -1,11 +1,11 @@
-import { Button } from "@/components/ui/Button.tsx";
-import { Textarea } from "@/components/ui/Textarea.tsx";
-import { userStore } from "@/store/auth/userStore.ts";
-import { supabase } from "@/utils/database.ts";
 import { useStore } from "@nanostores/react";
 import { Send } from "lucide-react";
 import type React from "react";
 import { useState, useTransition } from "react";
+import { Button } from "@/components/ui/Button.tsx";
+import { Textarea } from "@/components/ui/Textarea.tsx";
+import { userStore } from "@/store/auth/userStore.ts";
+import { supabase } from "@/utils/database.ts";
 
 const PostingInput = () => {
 	const [content, setContent] = useState("");
