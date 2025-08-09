@@ -49,7 +49,11 @@ const t = useTranslations(Astro.url);
   </div>
   <div class="mt-8 text-center">
     <a href="/chat">
-      <Button size="lg" variant="outline" className="bg-white/50 backdrop-blur-sm">
+      <Button
+        size="lg"
+        variant="default"
+        className="bg-blue-500 hover:bg-blue-600 text-white animate-pulse"
+      >
         {t("landing.ctaButton")}
       </Button>
     </a>

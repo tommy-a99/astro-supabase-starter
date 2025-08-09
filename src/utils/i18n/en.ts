@@ -2,7 +2,7 @@ export const en = {
 	landing: {
 		title: "Marlang",
 		description: "Introducing Marlang's family",
-		ctaButton: "Chat with Marlang",
+		ctaButton: "Start a Conversation with AI Chatbot",
 		bubble1: {
 			title: "Taeggu",
 			content: "Marlang's pretty and smart mom.",
@@ -23,5 +23,10 @@ export const en = {
 	},
 	message: {
 		title: "Chat room",
+	},
+	chat: {
+		welcomeMessage: "Hello! How can I help you today?",
+		example1: "Explain the Astro framework to me.",
+		example2: "What's the weather like today?",
 	},
 };

@@ -1,11 +1,21 @@
 ---
 import Layout from "../Layout.astro";
+import { useTranslations } from "../../utils/i18n/utils";
 import ChatWindow from "./ChatWindow.tsx";
+
+const t = useTranslations(Astro.url);
+
+const translations = {
+  welcomeMessage: t("chat.welcomeMessage"),
+  example1: t("chat.example1"),
+  example2: t("chat.example2"),
+  inputPlaceholder: t("message.title"),
+};
 ---
 
 <Layout
-  title="Chat with AI"
+  title={t("message.title")}
   description="Chat with AI in a user-friendly interface. Ask questions, get answers, and explore the capabilities of AI."
 >
-  <ChatWindow client:load />
+  <ChatWindow translations={translations} client:only="react" />
 </Layout>
